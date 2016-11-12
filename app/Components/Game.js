@@ -9,7 +9,8 @@ var HangpersonDisplay = require('./HangpersonDisplay');
 var Game = React.createClass({
 	getInitialState: function() {
 		return {
-			game: {partialWord: [],
+			game: {
+				partialWord: [],
 				guessed: []
 			}
 		}
@@ -18,7 +19,9 @@ var Game = React.createClass({
 		var self = this;
 		axios.get('/hangperson/current')
 			.then(function(result) {
-				self.setState({game: result.data});
+				self.setState({
+					game: result.data
+				});
 			});
 	},
 	guessLetter: function(letter) {
