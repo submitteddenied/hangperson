@@ -3,11 +3,15 @@ var axios = require('axios');
 
 var InputBox = require('./InputBox');
 var PartialWordDisplay = require('./PartialWordDisplay');
+var GuessedLetters = require('./GuessedLetters');
+var HangpersonDisplay = require('./HangpersonDisplay');
 
 var Game = React.createClass({
 	getInitialState: function() {
 		return {
-			game: {partialWord: []}
+			game: {partialWord: [],
+				guessed: []
+			}
 		}
 	},
 	componentWillMount: function() {
@@ -24,15 +28,24 @@ var Game = React.createClass({
 				self.setState({game: result.data});
 			});
 	},
+	restart: function(e) {
+		var self = this;
+		e.preventDefault();
+		axios.post('/hangperson/new', {})
+			.then(function(result) {
+				self.setState({game: result.data});
+			});
+	},
 	render: function() {
 		return (
 			<div className="container">
 				<div className="row">
 					<h1>Hangperson!</h1>
+					<button onClick={this.restart}>New Game</button>
 				</div>
 				<div className="row">
 					<div className="col-xs-12 col-md-6">
-						{/*<HangpersonDisplay game={this.state.game} />*/}
+						<HangpersonDisplay game={this.state.game} />
 					</div>
 					<div className="col-xs-12 col-md-6">
 						<div className="row">
@@ -42,7 +55,7 @@ var Game = React.createClass({
 							<PartialWordDisplay word={this.state.game.partialWord} />
 						</div>
 						<div className="row">
-							{/*<GuessedLetters letters={this.state.game.guessed} />*/}
+							<GuessedLetters letters={this.state.game.guessed} />
 						</div>
 					</div>
 				</div>
