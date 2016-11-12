@@ -9,6 +9,8 @@ app.use(bodyParser.json({type:'application/vnd.api+json'}));
 
 var gameController = require('./controllers/game_controller');
 
+app.use(express.static("./public"));
+
 app.use('/hangperson', gameController);
 
 var PORT = process.env.PORT || 3000;
