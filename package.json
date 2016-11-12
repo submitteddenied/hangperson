@@ -19,5 +19,9 @@
   "bugs": {
     "url": "https://github.com/submitteddenied/hangperson/issues"
   },
-  "homepage": "https://github.com/submitteddenied/hangperson"
+  "homepage": "https://github.com/submitteddenied/hangperson",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0"
+  }
 }
